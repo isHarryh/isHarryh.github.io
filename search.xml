@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>记一次博客网站搭建经历（Hexo + NexT + GitHub Pages）</title>
+    <url>/20230114/build-a-blog-website/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>本文旨在使用Hexo博客框架，基于GitHub Pages搭建个人博客，并对博客应用NexT界面主题。</p>
+<blockquote>
+<p><a href="https://hexo.io/zh-cn/">Hexo</a>，是基于Node.js的静态博客框架。其可以解析Markdown等格式的文章，然后便捷地转化为静态HTML网页。<br>GitHub Pages，是GitHub推出的，基于GitHub存储库的静态站点托管平台。<br>NexT，是Hexo的一种易于使用的博客主题。</p>
+</blockquote>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>在正式开始前，假定你已经准备好了：</p>
+<ol>
+<li>已注册的<a href="https://github.com/">GitHub</a>账号</li>
+<li>本地安装<a href="https://git-scm.com/downloads">Git</a></li>
+<li>本地配置<a href="https://learn.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-windows">Node.js</a>环境<br>另外，本文假定你已掌握命令行、HTML、Git、NPM等的基本知识。</li>
+</ol>
+<h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在GitHub中以<code>&lt;GitHub用户名&gt;.github.io</code>这一特殊命名格式创建一个公共仓库。然后向该远程仓库中提交(<code>Commit</code>)一个写好的用于测试的简单的<code>index.html</code>文件。<br>提交后等待GitHub方面部署完成，打开URL<code>https://&lt;GitHub用户名&gt;.github.io</code>，若能够呈现HTML中的内容，则证明GitHub Pages工作正常。</p>
+<h2 id="本地安装Hexo并初始化"><a href="#本地安装Hexo并初始化" class="headerlink" title="本地安装Hexo并初始化"></a>本地安装Hexo并初始化</h2><blockquote>
+<p>欲了解更多内容，请参考<a href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br>使用<code>npm</code>安装Hexo，命令行运行：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<p>确认Hexo安装成功后，初始化一个Hexo项目，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo init &lt;项目文件夹&gt;</span><br><span class="line">cd &lt;项目文件夹&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>上述的项目文件夹不要是非空文件夹。确认初始化成功后，文件夹内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;项目文件夹&gt;</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<p>接下来生成静态文件，并在本地服务器展示Hexo的默认Hello World界面，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>最后可访问 <a href="http://localhost:4000/">http://localhost:4000</a> 看到默认界面的效果（更改端口号请在第二条命令中加入选项<code>-p &lt;端口号&gt;</code>）。</p>
+<blockquote>
+<p>上述命令中<code>g</code>可写为全称<code>generate</code>，<code>s</code>可写为全称<code>server</code>。</p>
+</blockquote>
+<h2 id="更换为NexT主题"><a href="#更换为NexT主题" class="headerlink" title="更换为NexT主题"></a>更换为NexT主题</h2><p>Hexo支持更换博客的主题，推荐的主题有<a href="http://theme-next.iissnan.com/">NexT</a>、<a href="https://hexo.fluid-dev.com/">Fluid</a>、<a href="https://github.com/litten/hexo-theme-yilia">Yillia</a>、<a href="https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans">Melody</a>等。下面以NexT为例进行主题更换。<br>首先，下载该主题的资源到<code>themes</code>文件夹中，<code>cd</code>切到项目文件夹，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+<p>这时NexT主题的资源就会被克隆到<code>themes/next</code>这个子文件夹中。</p>
+<blockquote>
+<p>如需升级主题，可以<code>cd</code>切到<code>themes/next</code>，然后运行<code>git pull</code>命令，拉取仓库的更改。（记得备份配置文件）</p>
+</blockquote>
+<p>在根目录的<code>_config.yml</code>中，修改主题名称为NexT主题所在的文件夹名<code>next</code>，如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+<p>重新运行之前的<code>hexo g &amp;&amp; hexo s</code>命令，部署到本地服务器，即可查看更换后的效果。</p>
+<h1 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h1><h2 id="修改主配置"><a href="#修改主配置" class="headerlink" title="修改主配置"></a>修改主配置</h2><p>根目录的<code>_config.yml</code>就是<strong>站点主配置文件</strong>。<br>可以在里面修改站点名称(<code>title</code>)、作者(<code>author</code>)、语言(<code>language</code>)等各种设置，配置文件里面都有详细的英文注释。</p>
+<blockquote>
+<p>其中，语言字段需填写形如<code>en</code>、<code>zh-CN</code>等语言标识。具体支持哪些语言标识，与你使用的主题所做的I18N相关资源有关。NexT主题支持的语言标识可在<code>themes/next/languages</code>文件夹中查看。</p>
+</blockquote>
+<h2 id="修改NexT主题配置"><a href="#修改NexT主题配置" class="headerlink" title="修改NexT主题配置"></a>修改NexT主题配置</h2><p><code>themes/next</code>目录中的<code>_config.yml</code>就是NexT的<strong>主题配置文件</strong>（其他主题可以参考他们的文档）。<br>可以在里面修改页脚(<code>footer</code>)、布局(<code>scheme</code>)、菜单栏(<code>menu</code>)、侧边栏(<code>sidebar</code>)等各种设置，配置文件里也有详细的英文注释。文件后面还有第三方插件设置、站点统计工具、搜索服务等丰富的拓展设置。</p>
+<blockquote>
+<p>NexT支持的布局有4种：Muse、Mist、Pisces、Gemini。在配置文件里更改<code>scheme</code>的值即可更换布局。</p>
+</blockquote>
+<h1 id="文章操作"><a href="#文章操作" class="headerlink" title="文章操作"></a>文章操作</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><p><code>cd</code>切到项目文件夹，命令行运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post &lt;文件名称&gt;</span><br></pre></td></tr></table></figure>
+<p>随后，<code>source/_posts</code>文件夹将会生成一个<code>&lt;文件名称&gt;.md</code>，该文件初始具备的内容源自<code>scaffolds</code>文件夹中的对应的模板<code>post.md</code>。<code>&lt;文件名称&gt;.md</code>初始内容如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &lt;文章名称&gt;</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>这些是文章的头部信息。修改<code>title</code>的值可以更改文章<strong>在博客中显示的标题</strong>，而文件本身的名称会显示在博客地址栏，二者互不影响。</p>
+<h2 id="删除文章"><a href="#删除文章" class="headerlink" title="删除文章"></a>删除文章</h2><p>想要删除文章，可以直接删除<code>source/_posts</code>文件夹中对应的<code>.md</code>文件，然后重新生成静态文件。如果重新生成后仍有残留，可以在生成前运行<code>hexo clean</code>。</p>
+<h2 id="添加分类和标签"><a href="#添加分类和标签" class="headerlink" title="添加分类和标签"></a>添加分类和标签</h2><p>首先需要初始化分类页(<code>categories</code>)和标签页(<code>tags</code>)两个页面，步骤如下：<br>初始化分类页，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>然后编辑刚刚生成的<code>source/categories/index.md</code>文件，加入<code>type</code>和<code>layout</code>字段：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"><span class="section">layout: &quot;categories&quot; </span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>初始化标签页，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+<p>然后编辑刚刚生成的<code>source/tags/index.md</code>文件，加入<code>type</code>和<code>layout</code>字段：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"><span class="section">layout: &quot;tags&quot;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>初始化完毕后，想要为某个文章添加分类(<code>categories</code>)和标签(<code>tags</code>)，可以<strong>直接</strong>在头部信息里这样写：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &lt;文章名称&gt;</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> &lt;分类名&gt;</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> &lt;标签1&gt;</span><br><span class="line"><span class="section">- &lt;标签2&gt;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需注意，每个文章只能有一个分类；每个文章可以有多个标签。</p>
+</blockquote>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>通过以上步骤，我们实现了在本地搭建博客。现在我们使用<code>hexo-deployer-git</code>工具将其部署到GitHub Pages。<br>首先需要安装工具，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后，在GitHub的账户设置里的<code>Developer settings -&gt; Personal access tokens</code>中，生成一个新的token用于hexo部署（该token必须拥有repo的权限）。生成完毕后记得复制token下来。<br>修改根目录的<code>_config.yml</code>中的部署(<code>deploy</code>)设置，示例如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/isHarryh/isHarryh.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">ghp_xxxxxxxx（你的token）</span></span><br></pre></td></tr></table></figure>
+<p>执行生成+部署操作，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上述命令中的<code>-d</code>可写为全称<code>--deploy</code>。</p>
+</blockquote>
+<p>此操作将会把静态文件推送到GitHub仓库，除了必要的网页文件以外的任何文件（诸如配置文件）将不会上传。<br>等待GitHub方面部署完成（大概几分钟），再访问<code>https://&lt;GitHub用户名&gt;.github.io</code>，即可查看到部署后的博客网站了。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+</search>

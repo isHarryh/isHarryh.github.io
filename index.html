@@ -14,12 +14,10 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.tfev.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"blog.tfev.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
@@ -101,6 +99,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -130,11 +129,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -180,10 +206,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-01-14 13:07 / 修改时间：22:26" itemprop="dateCreated datePublished" datetime="2023-01-14T13:07:37+08:00">2023-01-14</time>
+              <time title="创建时间：2023-01-14 13:07" itemprop="dateCreated datePublished" datetime="2023-01-14T13:07:37+08:00">2023-01-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-15 14:37" itemprop="dateModified" datetime="2023-01-15T14:37:58+08:00">2023-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,17 +266,48 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/theme-next/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
 <p>这时NexT主题的资源就会被克隆到<code>themes/next</code>这个子文件夹中。</p>
 <blockquote>
-<p>如需升级主题，可以<code>cd</code>切到<code>themes/next</code>，然后运行<code>git pull</code>命令，拉取仓库的更改。</p>
+<p>如需升级主题，可以<code>cd</code>切到<code>themes/next</code>，然后运行<code>git pull</code>命令，拉取仓库的更改。（记得备份配置文件）</p>
 </blockquote>
 <p>在根目录的<code>_config.yml</code>中，修改主题名称为NexT主题所在的文件夹名<code>next</code>，如下：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
-<p>重新运行之前的<code>hexo g</code>和<code>hexo s</code>命令，部署到本地服务器，即可查看更换后的效果。</p>
+<p>重新运行之前的<code>hexo g &amp;&amp; hexo s</code>命令，部署到本地服务器，即可查看更换后的效果。</p>
 <h1 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h1><h2 id="修改主配置"><a href="#修改主配置" class="headerlink" title="修改主配置"></a>修改主配置</h2><p>根目录的<code>_config.yml</code>就是<strong>站点主配置文件</strong>。<br>可以在里面修改站点名称(<code>title</code>)、作者(<code>author</code>)、语言(<code>language</code>)等各种设置，配置文件里面都有详细的英文注释。</p>
 <blockquote>
 <p>其中，语言字段需填写形如<code>en</code>、<code>zh-CN</code>等语言标识。具体支持哪些语言标识，与你使用的主题所做的I18N相关资源有关。NexT主题支持的语言标识可在<code>themes/next/languages</code>文件夹中查看。</p>
 </blockquote>
-<h2 id="修改NexT主题配置"><a href="#修改NexT主题配置" class="headerlink" title="修改NexT主题配置"></a>修改NexT主题配置</h2><p><code>themes\next</code>目录中的<code>_config.yml</code>就是NexT的<strong>主题配置文件</strong>（其他主题可以参考他们的文档）。</p>
-<p>待续..</p>
+<h2 id="修改NexT主题配置"><a href="#修改NexT主题配置" class="headerlink" title="修改NexT主题配置"></a>修改NexT主题配置</h2><p><code>themes/next</code>目录中的<code>_config.yml</code>就是NexT的<strong>主题配置文件</strong>（其他主题可以参考他们的文档）。<br>可以在里面修改页脚(<code>footer</code>)、布局(<code>scheme</code>)、菜单栏(<code>menu</code>)、侧边栏(<code>sidebar</code>)等各种设置，配置文件里也有详细的英文注释。文件后面还有第三方插件设置、站点统计工具、搜索服务等丰富的拓展设置。</p>
+<blockquote>
+<p>NexT支持的布局有4种：Muse、Mist、Pisces、Gemini。在配置文件里更改<code>scheme</code>的值即可更换布局。</p>
+</blockquote>
+<h1 id="文章操作"><a href="#文章操作" class="headerlink" title="文章操作"></a>文章操作</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><p><code>cd</code>切到项目文件夹，命令行运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &lt;文件名称&gt;</span><br></pre></td></tr></table></figure>
+<p>随后，<code>source/_posts</code>文件夹将会生成一个<code>&lt;文件名称&gt;.md</code>，该文件初始具备的内容源自<code>scaffolds</code>文件夹中的对应的模板<code>post.md</code>。<code>&lt;文件名称&gt;.md</code>初始内容如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &lt;文章名称&gt;</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>这些是文章的头部信息。修改<code>title</code>的值可以更改文章<strong>在博客中显示的标题</strong>，而文件本身的名称会显示在博客地址栏，二者互不影响。</p>
+<h2 id="删除文章"><a href="#删除文章" class="headerlink" title="删除文章"></a>删除文章</h2><p>想要删除文章，可以直接删除<code>source/_posts</code>文件夹中对应的<code>.md</code>文件，然后重新生成静态文件。如果重新生成后仍有残留，可以在生成前运行<code>hexo clean</code>。</p>
+<h2 id="添加分类和标签"><a href="#添加分类和标签" class="headerlink" title="添加分类和标签"></a>添加分类和标签</h2><p>首先需要初始化分类页(<code>categories</code>)和标签页(<code>tags</code>)两个页面，步骤如下：<br>初始化分类页，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>然后编辑刚刚生成的<code>source/categories/index.md</code>文件，加入<code>type</code>和<code>layout</code>字段：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line"><span class="section">layout: &quot;categories&quot; </span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>初始化标签页，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+<p>然后编辑刚刚生成的<code>source/tags/index.md</code>文件，加入<code>type</code>和<code>layout</code>字段：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line"><span class="section">layout: &quot;tags&quot;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>初始化完毕后，想要为某个文章添加分类(<code>categories</code>)和标签(<code>tags</code>)，可以<strong>直接</strong>在头部信息里这样写：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &lt;文章名称&gt;</span><br><span class="line">date: 20XX-XX-XX XX:XX:XX</span><br><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> &lt;分类名&gt;</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">-</span> &lt;标签1&gt;</span><br><span class="line"><span class="section">- &lt;标签2&gt;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需注意，每个文章只能有一个分类；每个文章可以有多个标签。</p>
+</blockquote>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>通过以上步骤，我们实现了在本地搭建博客。现在我们使用<code>hexo-deployer-git</code>工具将其部署到GitHub Pages。<br>首先需要安装工具，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后，在GitHub的账户设置里的<code>Developer settings -&gt; Personal access tokens</code>中，生成一个新的token用于hexo部署（该token必须拥有repo的权限）。生成完毕后记得复制token下来。<br>修改根目录的<code>_config.yml</code>中的部署(<code>deploy</code>)设置，示例如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/isHarryh/isHarryh.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">ghp_xxxxxxxx（你的token）</span></span><br></pre></td></tr></table></figure>
+<p>执行生成+部署操作，命令行运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上述命令中的<code>-d</code>可写为全称<code>--deploy</code>。</p>
+</blockquote>
+<p>此操作将会把静态文件推送到GitHub仓库，除了必要的网页文件以外的任何文件（诸如配置文件）将不会上传。<br>等待GitHub方面部署完成（大概几分钟），再访问<code>https://&lt;GitHub用户名&gt;.github.io</code>，即可查看到部署后的博客网站了。</p>
 
       
     </div>
@@ -419,6 +482,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
