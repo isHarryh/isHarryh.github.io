@@ -14,7 +14,8 @@
 <li>本地配置<a href="https://learn.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-windows">Node.js</a>环境</li>
 </ol>
 <p>另外，本文假定你已掌握命令行、HTML、Git、NPM等的基本知识。</p>
-<h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在GitHub中以<code>&lt;GitHub用户名&gt;.github.io</code>这一特殊命名格式创建一个公共仓库。然后向该远程仓库中提交(<code>Commit</code>)一个写好的用于测试的简单的<code>index.html</code>文件。<br>提交后等待GitHub方面部署完成，打开URL<code>https://&lt;GitHub用户名&gt;.github.io</code>，若能够呈现HTML中的内容，则证明GitHub Pages工作正常。</p>
+<h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><span id="more"></span>
+<h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在GitHub中以<code>&lt;GitHub用户名&gt;.github.io</code>这一特殊命名格式创建一个公共仓库。然后向该远程仓库中提交(<code>Commit</code>)一个写好的用于测试的简单的<code>index.html</code>文件。<br>提交后等待GitHub方面部署完成，打开URL<code>https://&lt;GitHub用户名&gt;.github.io</code>，若能够呈现HTML中的内容，则证明GitHub Pages工作正常。</p>
 <h2 id="本地安装Hexo并初始化"><a href="#本地安装Hexo并初始化" class="headerlink" title="本地安装Hexo并初始化"></a>本地安装Hexo并初始化</h2><blockquote>
 <p>欲了解更多内容，请参考<a href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br>使用<code>npm</code>安装Hexo，命令行运行：</p>
 </blockquote>
@@ -102,6 +103,8 @@
 <li>$y$与$x$的依赖关系，也就是最终得出的模型的**参数(Parameters)**。</li>
 </ol>
 <h2 id="方程"><a href="#方程" class="headerlink" title="方程"></a>方程</h2><p>线性回归方程是<strong>一次方程</strong>，$y$的值由所有$x$共同决定。不同$x$对$y$的贡献不同（即每个$x$前的系数不同），这种参数称为**权重(Weight)**，下统一用$\theta$表示。假设线性回归包含$n$种数据特征，其方程可概述如下：<br>$ y &#x3D; \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \ldots + \theta_n x_n ​$</p>
+<span id="more"></span>
+
 <p>特别地，$\theta_0$也称作**偏置项(Bias)**。出于矩阵运算的方便考虑，现在为偏置项补位一个数据 $ x_0&#x3D;1 $。整合得到：<br>$ y &#x3D; \sum_{i&#x3D;0}^{n} \theta_i x_i ​$  </p>
 <h2 id="误差项"><a href="#误差项" class="headerlink" title="误差项"></a>误差项</h2><p>假设参数已知，线性回归包含$n$种数据特征。想象一个高维空间，其中放置着若干样本数据点，设其中的$n$维面$h_\theta$为样本点的<strong>拟合面</strong>，其表达式可概述如下：<br>$ h_\theta(x) &#x3D; \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \ldots + \theta_n x_n $</p>
 <p>同理整合得到：<br>$ h_\theta(x) &#x3D; \sum_{i&#x3D;0}^{n} \theta_i x_i $</p>

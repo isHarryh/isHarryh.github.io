@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.tfev.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.tfev.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="前言目标本文旨在使用Hexo博客框架，基于GitHub Pages搭建个人博客，并对博客应用NexT界面主题。  Hexo，是基于Node.js的静态博客框架。其可以解析Markdown等格式的文章，然后便捷地转化为静态HTML网页。GitHub Pages，是GitHub推出的，基于GitHub存储库的静态站点托管平台。NexT，是Hexo的一种易于使用的博客主题。  准备在正式开始前，假定你已">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="前言目标本文旨在使用Hexo博客框架，基于GitHub Pages搭建个人博客，并对博客应用NexT界面主题。  Hexo，是基于Node.js的静态博客框架。其可以解析Markdown等格式的文章，然后便捷地转化为静态HTML网页。GitHub Pages，是GitHub推出的，基于GitHub存储库的静态站点托管平台。NexT，是Hexo的一种易于使用的博客主题。  准备在正式开始前，假定你已">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-14T05:07:37.000Z">
-<meta property="article:modified_time" content="2023-01-16T01:07:16.000Z">
+<meta property="article:modified_time" content="2023-01-16T13:32:20.000Z">
 <meta property="article:author" content="Harry Huang">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -219,7 +219,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-16 09:07" itemprop="dateModified" datetime="2023-01-16T09:07:16+08:00">2023-01-16</time>
+                <time title="修改时间：2023-01-16 21:32" itemprop="dateModified" datetime="2023-01-16T21:32:20+08:00">2023-01-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,7 +253,8 @@
 <li>本地配置<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-windows">Node.js</a>环境</li>
 </ol>
 <p>另外，本文假定你已掌握命令行、HTML、Git、NPM等的基本知识。</p>
-<h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在GitHub中以<code>&lt;GitHub用户名&gt;.github.io</code>这一特殊命名格式创建一个公共仓库。然后向该远程仓库中提交(<code>Commit</code>)一个写好的用于测试的简单的<code>index.html</code>文件。<br>提交后等待GitHub方面部署完成，打开URL<code>https://&lt;GitHub用户名&gt;.github.io</code>，若能够呈现HTML中的内容，则证明GitHub Pages工作正常。</p>
+<h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><span id="more"></span>
+<h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在GitHub中以<code>&lt;GitHub用户名&gt;.github.io</code>这一特殊命名格式创建一个公共仓库。然后向该远程仓库中提交(<code>Commit</code>)一个写好的用于测试的简单的<code>index.html</code>文件。<br>提交后等待GitHub方面部署完成，打开URL<code>https://&lt;GitHub用户名&gt;.github.io</code>，若能够呈现HTML中的内容，则证明GitHub Pages工作正常。</p>
 <h2 id="本地安装Hexo并初始化"><a href="#本地安装Hexo并初始化" class="headerlink" title="本地安装Hexo并初始化"></a>本地安装Hexo并初始化</h2><blockquote>
 <p>欲了解更多内容，请参考<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br>使用<code>npm</code>安装Hexo，命令行运行：</p>
 </blockquote>
@@ -481,7 +482,6 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
