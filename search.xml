@@ -11,8 +11,9 @@
 <ol>
 <li>已注册的<a href="https://github.com/">GitHub</a>账号</li>
 <li>本地安装<a href="https://git-scm.com/downloads">Git</a></li>
-<li>本地配置<a href="https://learn.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-windows">Node.js</a>环境<br>另外，本文假定你已掌握命令行、HTML、Git、NPM等的基本知识。</li>
+<li>本地配置<a href="https://learn.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-windows">Node.js</a>环境</li>
 </ol>
+<p>另外，本文假定你已掌握命令行、HTML、Git、NPM等的基本知识。</p>
 <h1 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h1><h2 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h2><p>在GitHub中以<code>&lt;GitHub用户名&gt;.github.io</code>这一特殊命名格式创建一个公共仓库。然后向该远程仓库中提交(<code>Commit</code>)一个写好的用于测试的简单的<code>index.html</code>文件。<br>提交后等待GitHub方面部署完成，打开URL<code>https://&lt;GitHub用户名&gt;.github.io</code>，若能够呈现HTML中的内容，则证明GitHub Pages工作正常。</p>
 <h2 id="本地安装Hexo并初始化"><a href="#本地安装Hexo并初始化" class="headerlink" title="本地安装Hexo并初始化"></a>本地安装Hexo并初始化</h2><blockquote>
 <p>欲了解更多内容，请参考<a href="https://hexo.io/zh-cn/docs">Hexo官方文档</a><br>使用<code>npm</code>安装Hexo，命令行运行：</p>
@@ -80,6 +81,60 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性回归初步</title>
+    <url>/20230116/linear-regression-basis/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><blockquote>
+<p>本文假定你已掌握线性代数的基本知识。  </p>
+</blockquote>
+<p>机器学习在有监督学习中存在两种问题：</p>
+<ol>
+<li><strong>回归(Regression)问题</strong>：寻找因变量和数据间的依赖关系。</li>
+<li><strong>分类(Clustering)问题</strong>：根据对象间的相似性质进行聚类。</li>
+</ol>
+<p>而<strong>线性回归(Linear regression)</strong> 考察这样一类回归问题，其因变量和数据间的依赖关系(近似)是线性关系。</p>
+<p>由其基本定义不难提取出线性回归中的三个要素：</p>
+<ol>
+<li>因变量$y$，也即预测目标。</li>
+<li>数据$x$，可能不止一种。</li>
+<li>$y$与$x$的依赖关系，也就是最终得出的模型的**参数(Parameters)**。</li>
+</ol>
+<h2 id="方程"><a href="#方程" class="headerlink" title="方程"></a>方程</h2><p>线性回归方程是<strong>一次方程</strong>，$y$的值由所有$x$共同决定。不同$x$对$y$的贡献不同（即每个$x$前的系数不同），这种参数称为**权重(Weight)**，下统一用$\theta$表示。假设线性回归包含$n$种数据特征，其方程可概述如下：<br>$ y &#x3D; \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \ldots + \theta_n x_n ​$</p>
+<p>特别地，$\theta_0$也称作**偏置项(Bias)**。出于矩阵运算的方便考虑，现在为偏置项补位一个数据 $ x_0&#x3D;1 $。整合得到：<br>$ y &#x3D; \sum_{i&#x3D;0}^{n} \theta_i x_i ​$  </p>
+<h2 id="误差项"><a href="#误差项" class="headerlink" title="误差项"></a>误差项</h2><p>假设参数已知，线性回归包含$n$种数据特征。想象一个高维空间，其中放置着若干样本数据点，设其中的$n$维面$h_\theta$为样本点的<strong>拟合面</strong>，其表达式可概述如下：<br>$ h_\theta(x) &#x3D; \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \ldots + \theta_n x_n $</p>
+<p>同理整合得到：<br>$ h_\theta(x) &#x3D; \sum_{i&#x3D;0}^{n} \theta_i x_i $</p>
+<p>对于每一个样本点，设其真实值为 $y^{(i)}$，线性回归方程的预测值（拟合面的对应点的值）为 $\theta^Tx^{(i)}$，则可计算出其<strong>误差</strong> $\epsilon^{(i)}$，如下：<br>$ \epsilon^{(i)} &#x3D; y^{(i)} - \theta^T x^{(i)} $</p>
+<blockquote>
+<p>应从矩阵角度看待上式。其中上标$^T$指的是转置矩阵。</p>
+</blockquote>
+<p>在线性回归的机器学习中，通常学习目标是使得误差趋近于零。</p>
+<h2 id="误差分布"><a href="#误差分布" class="headerlink" title="误差分布"></a>误差分布</h2><p>误差 $\epsilon^{(i)}$ 是一组独立且同分布的变量，服从数学期望为$0$、方差为$\sigma^2$的**正态分布(Normal distribution)**。</p>
+<blockquote>
+<p>正态分布，又称为高斯分布(Gaussian distribution)。定义数学期望为$\mu$、方差为$\sigma^2$的随机变量$x$服从 $N(\mu,\sigma^2)$ 的正态分布：<br>$ f(x) &#x3D; \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(x-\mu)^2}{2\sigma^2}) $</p>
+</blockquote>
+<h2 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h2><p>误差满足正态分布：<br>$ f(\epsilon^{(i)}) &#x3D; \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(\epsilon^{(i)})^2}{2\sigma^2}) $</p>
+<p>联立 $ \epsilon^{(i)} &#x3D; y^{(i)} - \theta^T x^{(i)} $，求 “$\theta$和$x^{(i)}$组合后，与真实值$y^{(i)}$的相似度” ，可以表述为下式：<br>$ f(y^{(i)}|x^{(i)};\theta) &#x3D; \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(y^{(i)} - \theta^T x^{(i)})^2}{2\sigma^2}) $</p>
+<blockquote>
+<p>引理：假如两随机变量独立，则其联合概率密度等于其边缘概率密度的乘积。</p>
+</blockquote>
+<p>由引理求得下式：<br>$ L(\theta) &#x3D; \prod_{i&#x3D;1}^{m} (y^{(i)}|x^{(i)};\theta) &#x3D; \prod_{i&#x3D;1}^{m} \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(y^{(i)} - \theta^T x^{(i)})^2}{2\sigma^2}) $</p>
+<p>此函数称为关于某组参数$\theta$线性回归的**似然函数(Likelihood function)**，用于描述该$\theta$拟合的结果与真实值的相似度。</p>
+<p>似然函数为累乘函数，对其进行对数化处理后，得下式：<br>$ \ln L(\theta) &#x3D; \sum_{i&#x3D;1}^{m} (y^{(i)}|x^{(i)};\theta) &#x3D; \sum_{i&#x3D;1}^{m} \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(y^{(i)} - \theta^T x^{(i)})^2}{2\sigma^2}) $</p>
+<p>此函数称为对数似然。展开后分离常量，得下式：<br>$ \sum_{i&#x3D;1}^{m} \frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(y^{(i)} - \theta^T x^{(i)})^2}{2\sigma^2}) &#x3D; m \ln (\frac{1}{\sqrt{2\pi}\sigma}) - \frac{1}{\sigma^2} \cdot \frac{1}{2} \sum_{i&#x3D;1}^{m} (y^{(i)} - \theta^T x^{(i)})^2 $</p>
+<p>非常量部分记为<strong>目标函数</strong>$J(\theta)$：<br>$ J(\theta) &#x3D; \frac{1}{2} \sum_{i&#x3D;1}^{m} (y^{(i)} - \theta^T x^{(i)})^2 $  </p>
+<p>对于该目标函数，化为矩阵式后使其偏导等于零：<br>$ \triangledown_\theta J(\theta) &#x3D; X^TX\theta - X^Ty &#x3D; 0 $</p>
+<p>解得：<br>$ \theta &#x3D; (X^TX)^{-1} X^Ty $</p>
+<p>此即最佳满足似然函数的参数$\theta$的理论代数解法（最小二乘法）。</p>
+<p>待续…</p>
+]]></content>
+      <categories>
+        <category>人工智能</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>线性回归</tag>
       </tags>
   </entry>
 </search>
